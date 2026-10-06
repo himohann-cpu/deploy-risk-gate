@@ -1,0 +1,17 @@
+{
+  "service": "checkout-api",
+  "title": "Fix typos in the runbook",
+  "ref": "a1b2c3d",
+  "files": [
+    {
+      "path": "docs/runbook.md",
+      "added": 12,
+      "deleted": 9
+    },
+    {
+      "path": "README.md",
+      "added": 2,
+      "deleted": 2
+    }
+  ]
+}

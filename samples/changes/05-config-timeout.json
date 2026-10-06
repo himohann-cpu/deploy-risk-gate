@@ -1,0 +1,12 @@
+{
+  "service": "checkout-api",
+  "title": "Lower payments client timeout to 800ms",
+  "ref": "CHG-2310",
+  "files": [
+    {
+      "path": "config/clients.yaml",
+      "added": 1,
+      "deleted": 1
+    }
+  ]
+}

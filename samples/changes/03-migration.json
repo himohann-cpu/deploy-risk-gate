@@ -1,0 +1,17 @@
+{
+  "service": "orders-db",
+  "title": "Add index on orders.customer_id",
+  "ref": "MIG-0042",
+  "files": [
+    {
+      "path": "migrations/0042_orders_customer_idx.sql",
+      "added": 6,
+      "deleted": 0
+    },
+    {
+      "path": "app/models/order.py",
+      "added": 4,
+      "deleted": 1
+    }
+  ]
+}

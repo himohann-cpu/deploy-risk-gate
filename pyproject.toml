@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deploy-gate"
+version = "0.1.0"
+description = "Scores the risk of a change, picks a rollout plan to match, and gates each step on SLOs"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+gemini = ["google-genai>=1.0"]
+claude = ["anthropic>=0.40"]
+argo = ["ruamel.yaml>=0.17"]
+dev = ["pytest>=8", "ruamel.yaml>=0.17"]
+
+[project.scripts]
+deploy-gate = "deploy_gate.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+deploy_gate = ["default_policy.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

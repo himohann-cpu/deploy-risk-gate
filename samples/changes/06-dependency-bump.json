@@ -1,0 +1,12 @@
+{
+  "service": "notifications",
+  "title": "Bump structlog 24.1 to 24.4",
+  "ref": "5e0b1c3",
+  "files": [
+    {
+      "path": "requirements.txt",
+      "added": 1,
+      "deleted": 1
+    }
+  ]
+}

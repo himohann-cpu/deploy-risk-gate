@@ -1,0 +1,50 @@
+{
+  "services": {
+    "web-frontend": {
+      "depends_on": [
+        "checkout-api",
+        "search-api"
+      ],
+      "repo": "example-org/web-frontend"
+    },
+    "checkout-api": {
+      "depends_on": [
+        "payments-gateway",
+        "orders-db",
+        "cart-service"
+      ],
+      "repo": "example-org/checkout-api"
+    },
+    "cart-service": {
+      "depends_on": [
+        "redis-cache"
+      ],
+      "repo": "example-org/cart-service"
+    },
+    "orders-api": {
+      "depends_on": [
+        "orders-db"
+      ],
+      "repo": "example-org/orders-api"
+    },
+    "orders-db": {
+      "depends_on": [],
+      "repo": "example-org/db-migrations"
+    },
+    "search-api": {
+      "depends_on": [
+        "search-index"
+      ],
+      "repo": "example-org/search-api"
+    },
+    "notifications": {
+      "depends_on": [
+        "email-provider"
+      ],
+      "repo": "example-org/notifications"
+    },
+    "payments-gateway": {
+      "depends_on": []
+    }
+  }
+}

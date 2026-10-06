@@ -1,0 +1,17 @@
+{
+  "service": "search-api",
+  "title": "Handle empty query string",
+  "ref": "4e5f6a7",
+  "files": [
+    {
+      "path": "app/query/parser.py",
+      "added": 9,
+      "deleted": 3
+    },
+    {
+      "path": "tests/test_parser.py",
+      "added": 18,
+      "deleted": 0
+    }
+  ]
+}

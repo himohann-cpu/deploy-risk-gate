@@ -1,0 +1,66 @@
+{
+  "tiers": [
+    {"name": "low", "below": 25},
+    {"name": "medium", "below": 50},
+    {"name": "high", "below": 75},
+    {"name": "critical", "below": 101}
+  ],
+  "risk": {
+    "size_points": [[50, 0], [200, 8], [500, 15], [1000000000, 22]],
+    "many_files": {"over": 15, "points": 5},
+    "kind_points": {"migration": 25, "infra": 18, "config": 15, "dependency": 12, "code": 5, "docs": 0},
+    "sensitive_paths": {"patterns": ["auth", "payment", "billing", "crypto", "secrets", "permission"], "points": 15},
+    "no_tests_points": 10,
+    "blast_radius_points": [[0, 0], [2, 5], [5, 10], [1000000, 15]],
+    "unknown_service_points": 5,
+    "incident_points": [[0, 0], [1, 5], [1000000, 10]],
+    "risky_time_points": 8,
+    "multipliers": {}
+  },
+  "learning": {
+    "failure_outcomes": ["rolled_back", "incident"],
+    "success_outcomes": ["completed"],
+    "min_history": 10,
+    "prior_strength": 10,
+    "max_step": 0.1,
+    "deadband": 0.05,
+    "recalibrate_every": 10,
+    "min_multiplier": 0.5,
+    "max_multiplier": 2.0,
+    "recent_failure_days": 30
+  },
+  "deploy_window": {
+    "utc_offset_hours": 0,
+    "workdays": [0, 1, 2, 3, 4],
+    "start_hour": 8,
+    "end_hour": 18,
+    "friday_cutoff_hour": 15,
+    "freezes": []
+  },
+  "irreversible_kinds": ["migration"],
+  "rollouts": {
+    "low": {"approval": "none", "steps": [{"weight": 100, "bake_minutes": 10}]},
+    "medium": {"approval": "none",
+               "steps": [{"weight": 10, "bake_minutes": 10}, {"weight": 50, "bake_minutes": 10},
+                         {"weight": 100, "bake_minutes": 10}]},
+    "high": {"approval": "before_weight_50",
+             "steps": [{"weight": 1, "bake_minutes": 10}, {"weight": 10, "bake_minutes": 15},
+                       {"weight": 50, "bake_minutes": 20}, {"weight": 100, "bake_minutes": 20}]},
+    "critical": {"approval": "before_start",
+                 "steps": [{"weight": 1, "bake_minutes": 15}, {"weight": 5, "bake_minutes": 15},
+                           {"weight": 25, "bake_minutes": 20}, {"weight": 50, "bake_minutes": 30},
+                           {"weight": 100, "bake_minutes": 30}]}
+  },
+  "gate": {
+    "max_error_rate": 0.01,
+    "max_p99_ms": 800,
+    "error_ratio_over_baseline": 1.5,
+    "error_margin": 0.002,
+    "latency_ratio_over_baseline": 1.3,
+    "min_requests": 200,
+    "z_threshold": 2.33,
+    "check_every_minutes": 1,
+    "window_minutes": 5,
+    "max_bake_extensions": 2
+  }
+}

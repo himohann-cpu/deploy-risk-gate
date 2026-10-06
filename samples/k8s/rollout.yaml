@@ -1,0 +1,58 @@
+# Example Argo Rollout with an existing canary strategy and analysis.
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: checkout-api
+  namespace: shop
+  labels:
+    app: checkout-api
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: checkout-api
+  strategy:
+    canary:
+      canaryService: checkout-api-canary
+      stableService: checkout-api-stable
+      trafficRouting:
+        istio:
+          virtualService:
+            name: checkout-api
+            routes: [primary]
+      # Runs for the whole rollout, alongside the steps below.
+      analysis:
+        templates:
+          - templateName: error-rate
+        startingStep: 1
+      steps:
+        - setWeight: 20
+        - pause: {duration: 5m}
+        - analysis:            # smoke test after the first slice of traffic
+            templates:
+              - templateName: smoke-test
+        - setWeight: 60
+        - pause: {duration: 5m}
+        - setWeight: 100
+  template:
+    metadata:
+      labels:
+        app: checkout-api
+    spec:
+      containers:
+        - name: app
+          image: registry.example.com/checkout-api:1.42.0   # bumped by CI
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: checkout-api-canary
+  namespace: shop
+spec:
+  selector:
+    app: checkout-api
+  ports:
+    - port: 80
+      targetPort: 8000

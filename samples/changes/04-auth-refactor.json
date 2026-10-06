@@ -1,0 +1,92 @@
+{
+  "service": "checkout-api",
+  "title": "Refactor session handling and payment authorisation",
+  "ref": "9c8d7e6",
+  "files": [
+    {
+      "path": "app/auth/session.py",
+      "added": 60,
+      "deleted": 45
+    },
+    {
+      "path": "app/auth/tokens.py",
+      "added": 60,
+      "deleted": 45
+    },
+    {
+      "path": "app/auth/middleware.py",
+      "added": 60,
+      "deleted": 45
+    },
+    {
+      "path": "app/auth/permissions.py",
+      "added": 60,
+      "deleted": 45
+    },
+    {
+      "path": "app/payments/authorise.py",
+      "added": 40,
+      "deleted": 30
+    },
+    {
+      "path": "app/payments/capture.py",
+      "added": 40,
+      "deleted": 30
+    },
+    {
+      "path": "app/payments/refund.py",
+      "added": 40,
+      "deleted": 30
+    },
+    {
+      "path": "app/handlers/cart.py",
+      "added": 15,
+      "deleted": 10
+    },
+    {
+      "path": "app/handlers/checkout.py",
+      "added": 15,
+      "deleted": 10
+    },
+    {
+      "path": "app/handlers/orders.py",
+      "added": 15,
+      "deleted": 10
+    },
+    {
+      "path": "app/handlers/profile.py",
+      "added": 15,
+      "deleted": 10
+    },
+    {
+      "path": "app/handlers/address.py",
+      "added": 15,
+      "deleted": 10
+    },
+    {
+      "path": "app/handlers/promo.py",
+      "added": 15,
+      "deleted": 10
+    },
+    {
+      "path": "app/handlers/receipt.py",
+      "added": 15,
+      "deleted": 10
+    },
+    {
+      "path": "app/handlers/webhook.py",
+      "added": 15,
+      "deleted": 10
+    },
+    {
+      "path": "app/handlers/health.py",
+      "added": 15,
+      "deleted": 10
+    },
+    {
+      "path": "app/handlers/admin.py",
+      "added": 15,
+      "deleted": 10
+    }
+  ]
+}
